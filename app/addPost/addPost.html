@@ -1,0 +1,65 @@
+<div class="container-flex" ng-controller="AddPostCtrl">
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+		<div class="container-fluid">
+			<a class="navbar-brand" href="javascript:;;">AngularJs/FIrebase</a>
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			  </button>
+			<div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+				<ul class="navbar-nav ml-auto mb-2 mb-lg-0">
+					<li class="nav-item">
+						<a class="nav-link" aria-current="page" href="#/welcome">Inicio</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link active" href="#/addPost">Añadir post</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="javascript:;;" ng-click="logout()">Cerrar sesión</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+
+	<div class="container" ng-show="success">
+		<div class="row">
+			<div class="alert alert-success">
+				El Post se ha<strong> Guardado Correctamente!</strong> 
+			</div>
+		</div>
+	</div>
+
+
+	<div-card>
+		<div class="card-body">
+			<form role="form" name="postForm" class="user-form col-md-4 mt-5" style="border: 1px solid #f1f3fd; border-radius: 10px;" ng-submit="createPost()" novalidate="">
+				<legend>Crear Post</legend>
+		
+				<div class="form-group" ng-class="{'has-error': postForm.titleTxt.$invalid && postForm.titleTxt.$touched}">
+					<label for="titleTxt">Título</label>
+					<input type="text" name="titleTxt" class="form-control" placeholder="Título" ng-model="article.titleTxt"
+						ng-minlength="5" required="">
+					<small class="help-block" ng-show="postForm.titleTxt.$error.minlength && postForm.titleTxt.$touched" style="color: red;">
+						El <b>Título</b> debe tener al menos 5 caracteres.
+					</small>
+				</div>
+				<div class="form-group" ng-class="{'has-error': postForm.postTxt.$invalid && postForm.postTxt.$touched}">
+					<label for="postTxt">Post</label>
+					<textarea name="postTxt" class="form-control" placeholder="Post" ng-model="article.postTxt"
+						ng-minlength="20" required=""></textarea>
+					<small class="help-block" ng-show="postForm.postTxt.$error.minlength && postForm.postTxt.$touched" style="color: red;">
+						El <b>Post</b> debe tener al menos 20 caracteres.
+					</small>
+				</div>
+				<div class="form-group">
+					<button type="submit" class="btn btn-primary" ng-disabled="postForm.$invalid">Guardar Post</button>
+				</div>
+		
+			</form>
+		</div>
+	</div-card>
+
+
+	</body>
+
+	</html>

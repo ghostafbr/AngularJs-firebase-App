@@ -1,0 +1,88 @@
+<div class="container-flex" ng-controller="WelcomeCtrl">
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+		<div class="container-fluid">
+			<a class="navbar-brand" href="javascript:;;">AngularJs/FIrebase</a>
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			  </button>
+			<div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+				<ul class="navbar-nav ml-auto mb-2 mb-lg-0">
+					<li class="nav-item">
+						<a class="nav-link active" aria-current="page" href="#/welcome">Inicio</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="#/addPost">Añadir post</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="javascript:;;" ng-click="logout()">Cerrar sesión</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+
+	<div class="content m-5">
+		<div class="row">
+			<div class="col-md-12">
+				<h3 class="title-home">Bienvenido: <strong>{{username}}</strong></h3>
+			</div>
+		</div>
+		<div class="card mt-3" ng-repeat="article in articles" style="border-radius: 10px;">
+			<div class="card-body" style="text-align: justify;">
+				<h4 class="card-title">{{article.title}}</h4>
+				<p>{{article.post}}</p>
+
+				<button type="submit" class="btn btn-sm btn-primary" ng-click="editPost(article.$id)"
+					data-target="#editModal" data-toggle="modal">Editar</button>
+				<button type="submit" class="btn btn-sm btn-danger" ng-click="deleteCnf(article)"
+					data-target="#deleteModal" data-toggle="modal">Eliminar</button>
+			</div>
+		</div>
+	</div>
+
+	<div id="editModal" class="modal fade" role="dialog">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4>Editar Post</h4>
+				</div>
+				<div class="modal-body">
+					<form role="form">
+						<div class="form-group">
+							<label for="title">Título</label>
+							<input type="text" name="title" class="form-control" ng-model="editPostData.title" />
+						</div>
+						<div class="form-group">
+							<label for="post">Post</label>
+							<textarea name="post" class="form-control" ng-model="editPostData.post"></textarea>
+						</div>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-sm btn-primary" ng-click="updatePost(editPostData.$id)">
+						Actualizar Post
+					</button>
+					<button type="button" class="btn btn-sm btn-default" data-dismiss="modal">
+						Cancelar
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="deleteModal" class="modal fade" role="dialog">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header"></div>
+				<div class="modal-body">
+					<p>¿Esta seguro de eliminar este Post?</p>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-sm btn-danger"
+						ng-click="deletePost(deleteArticle)">Eliminar</button>
+					<button type="button" class="btn btn-sm btn-default" data-dismiss="modal">Cancelar</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</div>
