@@ -40,4 +40,8 @@ angular.module('webApp.addPost', ['ngRoute', 'firebase'])
 		});
 	};
 
+	$scope.logout = function(){
+		CommonProp.logoutUser();
+	};
+
 }]);
